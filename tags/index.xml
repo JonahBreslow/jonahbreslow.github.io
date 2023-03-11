@@ -5,6 +5,61 @@
     <link>https://jonahbreslow.github.io/tags/</link>
     <description>Recent content in Tags on Jonah Breslow&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://jonahbreslow.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sat, 11 Mar 2023 12:07:25 -0800</lastBuildDate><atom:link href="https://jonahbreslow.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Causal Inference</title>
+      <link>https://jonahbreslow.github.io/tags/causal-inference/</link>
+      <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/tags/causal-inference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IPTW</title>
+      <link>https://jonahbreslow.github.io/tags/iptw/</link>
+      <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/tags/iptw/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>https://jonahbreslow.github.io/tags/machine-learning/</link>
+      <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NLP</title>
+      <link>https://jonahbreslow.github.io/tags/nlp/</link>
+      <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/tags/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Statistics</title>
+      <link>https://jonahbreslow.github.io/tags/statistics/</link>
+      <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Word2vec</title>
+      <link>https://jonahbreslow.github.io/tags/word2vec/</link>
+      <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/tags/word2vec/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

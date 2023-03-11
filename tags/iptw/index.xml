@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jonah Breslow&#39;s Blog</title>
-    <link>https://jonahbreslow.github.io/</link>
-    <description>Recent content on Jonah Breslow&#39;s Blog</description>
+    <title>IPTW on Jonah Breslow&#39;s Blog</title>
+    <link>https://jonahbreslow.github.io/tags/iptw/</link>
+    <description>Recent content in IPTW on Jonah Breslow&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Mar 2023 12:07:25 -0800</lastBuildDate><atom:link href="https://jonahbreslow.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Implementing Word2vec in PyTorch from the Ground Up</title>
-      <link>https://jonahbreslow.github.io/posts/word2vec/</link>
-      <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
-      
-      <guid>https://jonahbreslow.github.io/posts/word2vec/</guid>
-      <description>A Step-by-Step Guide to Training a Word2vec Model Link to heading Photo by Brett Jordan on Unsplash Introduction Link to heading An important component of natural language processing (NLP) is the ability to translate words, phrases, or larger bodies of text into continuous numerical vectors. There are many techniques for accomplishing this task, but in this post we will focus in on a technique published in 2013 called word2vec.</description>
-    </item>
-    
+    <lastBuildDate>Sat, 11 Mar 2023 12:07:25 -0800</lastBuildDate><atom:link href="https://jonahbreslow.github.io/tags/iptw/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding Inverse Probability of Treatment Weighting (IPTW) in Causal Inference</title>
       <link>https://jonahbreslow.github.io/posts/iptw/</link>

@@ -2,21 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jonahbreslow.github.io/authors/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/tags/causal-inference/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/posts/word2vec/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/tags/iptw/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/authors/jonah-breslow/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
     <loc>https://jonahbreslow.github.io/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/tags/machine-learning/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/series/medium/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/tags/nlp/</loc>
     <lastmod>2023-03-11T12:07:25-08:00</lastmod>
   </url><url>
     <loc>https://jonahbreslow.github.io/posts/</loc>
     <lastmod>2023-03-11T12:07:25-08:00</lastmod>
   </url><url>
-    <loc>https://jonahbreslow.github.io/posts/mypost/</loc>
+    <loc>https://jonahbreslow.github.io/series/</loc>
     <lastmod>2023-03-11T12:07:25-08:00</lastmod>
   </url><url>
-    <loc>https://jonahbreslow.github.io/authors/</loc>
-  </url><url>
-    <loc>https://jonahbreslow.github.io/categories/</loc>
-  </url><url>
-    <loc>https://jonahbreslow.github.io/series/</loc>
+    <loc>https://jonahbreslow.github.io/tags/statistics/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
   </url><url>
     <loc>https://jonahbreslow.github.io/tags/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/posts/iptw/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/tags/word2vec/</loc>
+    <lastmod>2023-03-11T12:07:25-08:00</lastmod>
+  </url><url>
+    <loc>https://jonahbreslow.github.io/categories/</loc>
   </url>
 </urlset>
