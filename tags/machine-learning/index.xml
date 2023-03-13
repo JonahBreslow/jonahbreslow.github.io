@@ -13,7 +13,8 @@
       <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
       
       <guid>https://jonahbreslow.github.io/posts/word2vec/</guid>
-      <description>A Step-by-Step Guide to Training a Word2vec Model Link to heading Photo by Brett Jordan on Unsplash Introduction Link to heading An important component of natural language processing (NLP) is the ability to translate words, phrases, or larger bodies of text into continuous numerical vectors. There are many techniques for accomplishing this task, but in this post we will focus in on a technique published in 2013 called word2vec.</description>
+      <description>A Step-by-Step Guide to Training a Word2vec Model Link to heading Photo by Brett Jordan on Unsplash
+Introduction Link to heading An important component of natural language processing (NLP) is the ability to translate words, phrases, or larger bodies of text into continuous numerical vectors. There are many techniques for accomplishing this task, but in this post we will focus in on a technique published in 2013 called word2vec.</description>
     </item>
     
   </channel>

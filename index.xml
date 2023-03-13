@@ -6,14 +6,25 @@
     <description>Recent content on Jonah Breslow&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Mar 2023 12:07:25 -0800</lastBuildDate><atom:link href="https://jonahbreslow.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jonahbreslow.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>https://jonahbreslow.github.io/about/</link>
+      <pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/about/</guid>
+      <description>Hey there, I&amp;rsquo;m Jonah, a data nerd and machine learning enthusiast currently working as a Machine Learning Engineer at ClassPass. With a Bachelor&amp;rsquo;s degree from Claremont McKenna College and a Master&amp;rsquo;s degree in Data Science and Engineering from UC San Diego, I bring a diverse range of skills and expertise to the table.
+My main focus is on leveraging data-driven solutions to tackle complex problems in various industries, including healthcare, finance, and wellness.</description>
+    </item>
+    
     <item>
       <title>Implementing Word2vec in PyTorch from the Ground Up</title>
       <link>https://jonahbreslow.github.io/posts/word2vec/</link>
       <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
       
       <guid>https://jonahbreslow.github.io/posts/word2vec/</guid>
-      <description>A Step-by-Step Guide to Training a Word2vec Model Link to heading Photo by Brett Jordan on Unsplash Introduction Link to heading An important component of natural language processing (NLP) is the ability to translate words, phrases, or larger bodies of text into continuous numerical vectors. There are many techniques for accomplishing this task, but in this post we will focus in on a technique published in 2013 called word2vec.</description>
+      <description>A Step-by-Step Guide to Training a Word2vec Model Link to heading Photo by Brett Jordan on Unsplash
+Introduction Link to heading An important component of natural language processing (NLP) is the ability to translate words, phrases, or larger bodies of text into continuous numerical vectors. There are many techniques for accomplishing this task, but in this post we will focus in on a technique published in 2013 called word2vec.</description>
     </item>
     
     <item>
@@ -22,7 +33,18 @@
       <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
       
       <guid>https://jonahbreslow.github.io/posts/iptw/</guid>
-      <description>An Intuitive Explanation of IPTW and a Comparison to Multivariate Regression Link to heading Photo by Nadir sYzYgY on Unsplash Introduction Link to heading In this post I will provide an intuitive and illustrated explanation of inverse probability of treatment weighting (IPTW), which is one of various propensity score (PS) methods. IPTW is an alternative to multivariate linear regression in the context of causal inference, since both attempt to ascertain the effect of a treatment on an outcome in the presence of confounds.</description>
+      <description>An Intuitive Explanation of IPTW and a Comparison to Multivariate Regression Link to heading Photo by Nadir sYzYgY on Unsplash
+Introduction Link to heading In this post I will provide an intuitive and illustrated explanation of inverse probability of treatment weighting (IPTW), which is one of various propensity score (PS) methods. IPTW is an alternative to multivariate linear regression in the context of causal inference, since both attempt to ascertain the effect of a treatment on an outcome in the presence of confounds.</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>https://jonahbreslow.github.io/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/contact/</guid>
+      <description>Contact form:
+Send a message </description>
     </item>
     
   </channel>

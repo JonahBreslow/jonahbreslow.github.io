@@ -71,7 +71,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.111.2">
+<meta name="generator" content="Hugo 0.111.3">
 
 
 
@@ -113,6 +113,10 @@
           
             <li class="navigation-item">
               <a class="navigation-link" href="/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">Contact</a>
             </li>
           
         
@@ -180,9 +184,7 @@
   </a>
 </h4>
 <p><img src="https://cdn-images-1.medium.com/max/800/0*certR9SQY_knknxo" alt=""></p>
-<p>Photo by <a href="https://unsplash.com/@brett_jordan?utm_source=medium&amp;utm_medium=referral"  class="external-link" target="_blank" rel="noopener">Brett Jordan</a>
- on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral"  class="external-link" target="_blank" rel="noopener">Unsplash</a>
-</p>
+<p>Photo by <a href="https://unsplash.com/@brett_jordan?utm_source=medium&amp;utm_medium=referral"  class="external-link" target="_blank" rel="noopener">Brett Jordan</a> on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral"  class="external-link" target="_blank" rel="noopener">Unsplash</a></p>
 <h3 id="introduction">
   Introduction
   <a class="heading-link" href="#introduction">
@@ -191,11 +193,9 @@
   </a>
 </h3>
 <p>An important component of natural language processing (NLP) is the ability to translate words, phrases, or larger bodies of text into continuous numerical vectors. There are many techniques for accomplishing this task, but in this post we will focus in on a technique published in 2013 called word2vec.</p>
-<p>Word2vec is an algorithm published by Mikolov et al. in a paper titled <a href="https://arxiv.org/pdf/1301.3781.pdf"  class="external-link" target="_blank" rel="noopener">Efficient Estimation of Word Representations in Vector Space</a>
-. This paper is worth reading, though I will provide an overview as we build it from the ground up in PyTorch. Succinctly, word2vec uses a single hidden layer artificial neural network to learn dense word embeddings. These word embeddings allow us to identify words that have similar semantic meanings. Additionally, word embeddings allow us to apply algebraic operations. For example “<em>vector(‘King’) - vector(‘Man’) + vector(‘Woman’)</em> results in a vector that is closest to the vector representation of the word <em>Queen”</em> (“Efficient Estimation of Word Representations in Vector Space” 2).</p>
+<p>Word2vec is an algorithm published by Mikolov et al. in a paper titled <a href="https://arxiv.org/pdf/1301.3781.pdf"  class="external-link" target="_blank" rel="noopener">Efficient Estimation of Word Representations in Vector Space</a>. This paper is worth reading, though I will provide an overview as we build it from the ground up in PyTorch. Succinctly, word2vec uses a single hidden layer artificial neural network to learn dense word embeddings. These word embeddings allow us to identify words that have similar semantic meanings. Additionally, word embeddings allow us to apply algebraic operations. For example “<em>vector(‘King’) - vector(‘Man’) + vector(‘Woman’)</em> results in a vector that is closest to the vector representation of the word <em>Queen”</em> (“Efficient Estimation of Word Representations in Vector Space” 2).</p>
 <p><img src="https://cdn-images-1.medium.com/max/800/0*-Jd2-SADPkMgIk4r.png" alt=""></p>
-<p>Figure 1: Word Embedding Example — <strong>Credits:</strong> <a href="https://thegradient.pub/nlp-imagenet/"  class="external-link" target="_blank" rel="noopener">https://thegradient.pub/nlp-imagenet/</a>
-</p>
+<p>Figure 1: Word Embedding Example — <strong>Credits:</strong> <a href="https://thegradient.pub/nlp-imagenet/"  class="external-link" target="_blank" rel="noopener">https://thegradient.pub/nlp-imagenet/</a></p>
 <p>Figure 1 is an example of word embeddings in 3-dimensions. Word embeddings can learn semantic relationships between words. The “Male-Female” example illustrates how the relationship between “man” and “woman” is very similar to the relationship between “king” and “queen.” Syntactic relationships can be encoded by embeddings as is shown in the “Verb tense” example.</p>
 <hr>
 <h3 id="word-embeddings-overview">
@@ -221,9 +221,7 @@
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<p>Word embeddings are precisely how we translate our thoughts into a language computers can understand. Let’s work through an example taken from the <a href="https://en.wikipedia.org/wiki/Python_%28programming_language%29"  class="external-link" target="_blank" rel="noopener">Wikipedia article on python</a>
- that states <strong><em>“python consistently ranks as one of the most popular programming languages.”</em></strong> This sentence contains 11 words, so why don’t we create a vector of length 11 where each index takes the value 1 if the word is present and a 0 if it is not? This is commonly known as <a href="https://en.wikipedia.org/wiki/One-hot"  class="external-link" target="_blank" rel="noopener">one-hot encoding</a>
-.</p>
+<p>Word embeddings are precisely how we translate our thoughts into a language computers can understand. Let’s work through an example taken from the <a href="https://en.wikipedia.org/wiki/Python_%28programming_language%29"  class="external-link" target="_blank" rel="noopener">Wikipedia article on python</a> that states <strong><em>“python consistently ranks as one of the most popular programming languages.”</em></strong> This sentence contains 11 words, so why don’t we create a vector of length 11 where each index takes the value 1 if the word is present and a 0 if it is not? This is commonly known as <a href="https://en.wikipedia.org/wiki/One-hot"  class="external-link" target="_blank" rel="noopener">one-hot encoding</a>.</p>
 <pre tabindex="0"><code>python       = [1,0,0,0,0,0,0,0,0,0,0]  
 consistently = [0,1,0,0,0,0,0,0,0,0,0]  
 ranks        = [0,0,1,0,0,0,0,0,0,0,0]  
@@ -235,9 +233,7 @@ most         = [0,0,0,0,0,0,0,1,0,0,0]
 popular      = [0,0,0,0,0,0,0,0,1,0,0]  
 programming  = [0,0,0,0,0,0,0,0,0,1,0]  
 languages    = [0,0,0,0,0,0,0,0,0,0,1]
-</code></pre><p>This method of converting words into vectors is arguably the simplest. Yet, there are a few shortcomings that will provide the motivation for word2vec embeddings. First, the length of the embedding vectors increases linearly with the size of the vocabulary. Once we need to embed millions of words, this method of embedding becomes problematic in terms of <a href="https://en.wikipedia.org/wiki/Space_complexity"  class="external-link" target="_blank" rel="noopener">space complexity</a>
-. Second is the issue that these vectors are sparse. Each vector has only a single entry with value 1 and all remaining entries have value 0. Once again, this is a significant waste of memory. Finally, each word vector is <a href="https://en.wikipedia.org/wiki/Orthogonality"  class="external-link" target="_blank" rel="noopener">orthogonal</a>
- to every other word vector. Therefore, there is no way to determine which words are most similar. I would argue that the words “python” and “programming” should be considered more similar to each other than “python” and “ranks.” Unfortunately, the vector representations for each of these words is equally different from every other vector.</p>
+</code></pre><p>This method of converting words into vectors is arguably the simplest. Yet, there are a few shortcomings that will provide the motivation for word2vec embeddings. First, the length of the embedding vectors increases linearly with the size of the vocabulary. Once we need to embed millions of words, this method of embedding becomes problematic in terms of <a href="https://en.wikipedia.org/wiki/Space_complexity"  class="external-link" target="_blank" rel="noopener">space complexity</a>. Second is the issue that these vectors are sparse. Each vector has only a single entry with value 1 and all remaining entries have value 0. Once again, this is a significant waste of memory. Finally, each word vector is <a href="https://en.wikipedia.org/wiki/Orthogonality"  class="external-link" target="_blank" rel="noopener">orthogonal</a> to every other word vector. Therefore, there is no way to determine which words are most similar. I would argue that the words “python” and “programming” should be considered more similar to each other than “python” and “ranks.” Unfortunately, the vector representations for each of these words is equally different from every other vector.</p>
 <h4 id="improved-word-embeddings">
   Improved Word Embeddings
   <a class="heading-link" href="#improved-word-embeddings">
@@ -249,8 +245,7 @@ languages    = [0,0,0,0,0,0,0,0,0,0,1]
 <pre tabindex="0"><code>python       = [0.5,0.8,-0.1]  
 ranks        = [-0.5,0.1,0.8]  
 programming  = [0.9,0.4,0.1]
-</code></pre><p>If we take the <a href="https://en.wikipedia.org/wiki/Dot_product"  class="external-link" target="_blank" rel="noopener">dot product</a>
- of “python” and “ranks”, we would get:</p>
+</code></pre><p>If we take the <a href="https://en.wikipedia.org/wiki/Dot_product"  class="external-link" target="_blank" rel="noopener">dot product</a> of “python” and “ranks”, we would get:</p>
 <p><img src="https://cdn-images-1.medium.com/max/800/1*Hhk9pU-ApNY55zO9qt6M-A.png" alt=""></p>
 <p>And if we take the dot product of “python” and “programming”, we would get:</p>
 <p><img src="https://cdn-images-1.medium.com/max/800/1*ep2DZDdUWBo7NdLcfWaRMA.png" alt=""></p>
@@ -263,10 +258,7 @@ programming  = [0.9,0.4,0.1]
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>Now that we have a grasp of word embeddings, the question becomes how to learn these embeddings. This is where Mikolov’s word2vec model comes into play. If you are unfamiliar with <a href="https://en.wikipedia.org/wiki/Artificial_neural_network"  class="external-link" target="_blank" rel="noopener">artificial neural networks</a>
-, the following sections will be unclear since word2vec is fundamentally based on this type of model. I highly recommend checking out Michael Nielsen’s free online <a href="http://neuralnetworksanddeeplearning.com"  class="external-link" target="_blank" rel="noopener">Deep Learning and Neural Networks</a>
- course and 3Blue1Brown’s <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"  class="external-link" target="_blank" rel="noopener">YouTube</a>
- series on neural networks if this material is new for you.</p>
+<p>Now that we have a grasp of word embeddings, the question becomes how to learn these embeddings. This is where Mikolov’s word2vec model comes into play. If you are unfamiliar with <a href="https://en.wikipedia.org/wiki/Artificial_neural_network"  class="external-link" target="_blank" rel="noopener">artificial neural networks</a>, the following sections will be unclear since word2vec is fundamentally based on this type of model. I highly recommend checking out Michael Nielsen’s free online <a href="http://neuralnetworksanddeeplearning.com"  class="external-link" target="_blank" rel="noopener">Deep Learning and Neural Networks</a> course and 3Blue1Brown’s <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"  class="external-link" target="_blank" rel="noopener">YouTube</a> series on neural networks if this material is new for you.</p>
 <h4 id="skipgrams">
   Skipgrams
   <a class="heading-link" href="#skipgrams">
@@ -298,11 +290,8 @@ programming  = [0.9,0.4,0.1]
   </a>
 </h4>
 <p><img src="https://cdn-images-1.medium.com/max/800/0*zr6xowf2R-aoWO2l" alt=""></p>
-<p>Photo by <a href="https://unsplash.com/@edge2edgemedia?utm_source=medium&amp;utm_medium=referral"  class="external-link" target="_blank" rel="noopener">Edge2Edge Media</a>
- on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral"  class="external-link" target="_blank" rel="noopener">Unsplash</a>
-</p>
-<p>In the paper titled <a href="https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf"  class="external-link" target="_blank" rel="noopener">Distributed Representations of Words and Phrases and their Compositionality</a>
- by Mikolov et al., the authors propose two enhancements to the original word2vec model — negative sampling and subsampling.</p>
+<p>Photo by <a href="https://unsplash.com/@edge2edgemedia?utm_source=medium&amp;utm_medium=referral"  class="external-link" target="_blank" rel="noopener">Edge2Edge Media</a> on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral"  class="external-link" target="_blank" rel="noopener">Unsplash</a></p>
+<p>In the paper titled <a href="https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf"  class="external-link" target="_blank" rel="noopener">Distributed Representations of Words and Phrases and their Compositionality</a> by Mikolov et al., the authors propose two enhancements to the original word2vec model — negative sampling and subsampling.</p>
 <p>In Figure 3, notice how each prediction vector is of length <code>V</code>. The ground truth vectors that will be compared to each prediction vector will also be of length <code>V</code>, but the ground truth vectors will be extremely sparse since only a single element of the vector will be labeled 1 — the true context word the model is being trained to predict. This true context word will be referred to as the “positive context word”. Every other word in the vocabulary, which is <code>V — 1</code> words, will be labeled 0 since they are not the context word in the training example. All of these words will be referred to as “negative context words”.</p>
 <p>Mikolov et al. proposed a methodology called <em>negative sampling</em> that reduces the size of the ground truth vector and therefore the prediction vector. This reduces the computational requirements of the network and expedites training. Instead of using all the negative context words, Mikolov proposed a method to sample a small number of negative context words from the existing<code>V — 1</code> negative context words using a conditional probability distribution.</p>
 <p>In the code provided, I implement a negative sampling procedure that differs from the method Mikolov proposed. It was simpler to construct and still results in high-quality embeddings. In Mikolov’s paper, the probability that a negative sample is chosen is based on the conditional probability of seeing the candidate word in the context of the target word. So, for every word in the vocabulary, we would generate a probability distribution for every other word in the vocabulary. These distributions represent the conditional probability of seeing the other word in the target word’s context. Then, the negative context words would be sampled with a probability inversely proportional to the conditional probability of the context word.</p>
@@ -323,12 +312,8 @@ programming  = [0.9,0.4,0.1]
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>With the overview of word embeddings, word2vec architecture, negative sampling, and subsampling out of the way, let’s dig into the code. Please note, there are frameworks that have abstracted away the implementation details of word2vec. These options are extremely powerful and provide the user extensibility. For example, <a href="https://radimrehurek.com/gensim/index.html"  class="external-link" target="_blank" rel="noopener">gensim</a>
- provides a <a href="https://radimrehurek.com/gensim/models/word2vec.html"  class="external-link" target="_blank" rel="noopener">word2vec API</a>
- which includes additional functions such as using pretrained models and multi-word n-grams. However, in this tutorial we will create a word2vec model without leveraging any of these frameworks.</p>
-<p>All the code we will review in this tutorial can be found on my <a href="https://github.com/JonahBreslow/Word2Vec-PyTorch/blob/main/README.md"  class="external-link" target="_blank" rel="noopener">GitHub</a>
-. Please note, the code in the repository is subject to change as I work on it. For the purpose of this tutorial, a simplified version of this code will be presented here in a <a href="https://gist.github.com/JonahBreslow/8b6f0e91fcbdfb449798708a53f4656e"  class="external-link" target="_blank" rel="noopener">Google Colab notebook</a>
-.</p>
+<p>With the overview of word embeddings, word2vec architecture, negative sampling, and subsampling out of the way, let’s dig into the code. Please note, there are frameworks that have abstracted away the implementation details of word2vec. These options are extremely powerful and provide the user extensibility. For example, <a href="https://radimrehurek.com/gensim/index.html"  class="external-link" target="_blank" rel="noopener">gensim</a> provides a <a href="https://radimrehurek.com/gensim/models/word2vec.html"  class="external-link" target="_blank" rel="noopener">word2vec API</a> which includes additional functions such as using pretrained models and multi-word n-grams. However, in this tutorial we will create a word2vec model without leveraging any of these frameworks.</p>
+<p>All the code we will review in this tutorial can be found on my <a href="https://github.com/JonahBreslow/Word2Vec-PyTorch/blob/main/README.md"  class="external-link" target="_blank" rel="noopener">GitHub</a>. Please note, the code in the repository is subject to change as I work on it. For the purpose of this tutorial, a simplified version of this code will be presented here in a <a href="https://gist.github.com/JonahBreslow/8b6f0e91fcbdfb449798708a53f4656e"  class="external-link" target="_blank" rel="noopener">Google Colab notebook</a>.</p>
 <h4 id="getting-data">
   Getting Data
   <a class="heading-link" href="#getting-data">
@@ -336,9 +321,7 @@ programming  = [0.9,0.4,0.1]
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<p>We will use a wikipedia dataset called <a href="https://pytorch.org/text/0.8.1/datasets.html#wikitext103"  class="external-link" target="_blank" rel="noopener">WikiText103</a>
- provided by PyTorch for training our word2vec model. In the code below, you will see how I import and print the first few lines of the dataset. The first text comes from the wikipedia article on <a href="https://en.wikipedia.org/wiki/Valkyria_Chronicles_III"  class="external-link" target="_blank" rel="noopener">Valkyria Chronicles III</a>
-.</p>
+<p>We will use a wikipedia dataset called <a href="https://pytorch.org/text/0.8.1/datasets.html#wikitext103"  class="external-link" target="_blank" rel="noopener">WikiText103</a> provided by PyTorch for training our word2vec model. In the code below, you will see how I import and print the first few lines of the dataset. The first text comes from the wikipedia article on <a href="https://en.wikipedia.org/wiki/Valkyria_Chronicles_III"  class="external-link" target="_blank" rel="noopener">Valkyria Chronicles III</a>.</p>
 <h4 id="setting-parameters-and-configuration">
   Setting Parameters and Configuration
   <a class="heading-link" href="#setting-parameters-and-configuration">
@@ -348,8 +331,7 @@ programming  = [0.9,0.4,0.1]
 </h4>
 <p>Now we will set parameters and configuration values that will be used throughout the rest of the code. Some of the parameters in this snippet are relevant to code later on in the notebook, but bear with me.</p>
 <p>Here we construct a dataclass containing parameters that define our word2vec model. The first section controls text preprocessing and skipgram construction. We will only consider words that occur at least 50 times. This is controlled by the <code>MIN_FREQ</code> parameter. <code>SKIPGRAM_N_WORDS</code> is the window size we will consider for constructing the skipgrams. This means that we will look at 8 words before and after the target word. <code>T</code> controls the how we compute the subsampling probability. This means that words with frequency in the 85th percentile will have a small probability of being subsampled as we described in the subsampling section above. <code>NEG_SAMPLES</code> is the number of negative samples to use for each training example, as described in the negative sampling section above. <code>NS_ARRAY_LEN</code> is the length of the negative sampling vector that we will sample negative observations from. <code>SPECIALS</code> is the placeholder string for words that are excluded from the vocabulary if they do not meet the minimum frequency requirement. <code>TOKENIZER</code> refers to how we want to convert the corpus of text into tokens. The “basic_english” tokenizer splits all the text by spaces.</p>
-<p>The second section defines the model configuration and hyperparameters. <code>BATCH_SIZE</code> is the number of documents that will be in each minibatch used to train the network. <code>EMBED_DIM</code>is the dimensionality of the embeddings we will use for every word in the vocabulary. <code>EMBED_MAX_NORM</code> is the maximum <a href="https://en.wikipedia.org/wiki/Norm_%28mathematics%29"  class="external-link" target="_blank" rel="noopener">norm</a>
- each embedding vector can be. <code>N_EPOCHS</code> is the number of epochs we will train the model for. <code>DEVICE</code> tells PyTorch whether to use a CPU or a GPU to train the model. <code>CRITERION</code> is the loss function used. Discussion of loss function choice will be continued when we discuss the model training procedure.</p>
+<p>The second section defines the model configuration and hyperparameters. <code>BATCH_SIZE</code> is the number of documents that will be in each minibatch used to train the network. <code>EMBED_DIM</code>is the dimensionality of the embeddings we will use for every word in the vocabulary. <code>EMBED_MAX_NORM</code> is the maximum <a href="https://en.wikipedia.org/wiki/Norm_%28mathematics%29"  class="external-link" target="_blank" rel="noopener">norm</a> each embedding vector can be. <code>N_EPOCHS</code> is the number of epochs we will train the model for. <code>DEVICE</code> tells PyTorch whether to use a CPU or a GPU to train the model. <code>CRITERION</code> is the loss function used. Discussion of loss function choice will be continued when we discuss the model training procedure.</p>
 <h4 id="building-the-vocabulary">
   Building the Vocabulary
   <a class="heading-link" href="#building-the-vocabulary">
@@ -369,8 +351,7 @@ programming  = [0.9,0.4,0.1]
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<p>The next step in the process is to construct the skipgrams with subsampling and then create dataloaders for our PyTorch model. For an overview on why dataloaders are so critical for PyTorch models that train on a lot of data, check out the <a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html"  class="external-link" target="_blank" rel="noopener">documentation</a>
-.</p>
+<p>The next step in the process is to construct the skipgrams with subsampling and then create dataloaders for our PyTorch model. For an overview on why dataloaders are so critical for PyTorch models that train on a lot of data, check out the <a href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html"  class="external-link" target="_blank" rel="noopener">documentation</a>.</p>
 <p>This class is probably the most complex we have worked on yet so let’s go through each method thoroughly starting with the last method, <code>collate_skipgram()</code>. We start by initializing two lists, <code>batch_input</code> and <code>batch_output</code>. Each of these lists will be populated with vocabulary indices. Ultimately, the <code>batch_input</code> list will have the indices for each target word and the<code>batch_output</code> list will contain positive context word indices for each target word. The first step is to loop over every text in the batch and convert all the tokens to the corresponding vocabulary index:</p>
 <div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">for</span> text <span style="color:#ff7b72;font-weight:bold">in</span> batch:  
 </span></span><span style="display:flex;"><span>    text_tokens <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>vocab<span style="color:#ff7b72;font-weight:bold">.</span>get_index(self<span style="color:#ff7b72;font-weight:bold">.</span>tokenizer(text))
@@ -421,8 +402,7 @@ programming  = [0.9,0.4,0.1]
   </a>
 </h4>
 <p>Finally, we get to build the word2vec model in PyTorch. The idiomatic approach to building a PyTorch neural network is to define the various network architecture layers in the constructor, and the forward pass of data through the network in a method called <code>forward()</code>. Luckily, PyTorch has abstracted away the backwards pass that updates the model parameters so we do not need to compute gradients manually.</p>
-<p>PyTorch models are always inherited from <code>torch.nn.Module</code> class. We will leverage the PyTorch <a href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html"  class="external-link" target="_blank" rel="noopener">embedding</a>
- layer, which creates a lookup table of word vectors. The two layers we define in our word2vec model are <code>self.t_embeddings,</code> which is the target embeddings that we are interested in learning, and <code>self.c_embeddings</code>, which is the secondary (purple) embedding matrix from Figure 2. Both of these embedding matrices are initialized randomly.</p>
+<p>PyTorch models are always inherited from <code>torch.nn.Module</code> class. We will leverage the PyTorch <a href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html"  class="external-link" target="_blank" rel="noopener">embedding</a> layer, which creates a lookup table of word vectors. The two layers we define in our word2vec model are <code>self.t_embeddings,</code> which is the target embeddings that we are interested in learning, and <code>self.c_embeddings</code>, which is the secondary (purple) embedding matrix from Figure 2. Both of these embedding matrices are initialized randomly.</p>
 <p>If we wanted to train every parameter in the network, we could forego negative sampling at this point and the <code>forward</code> method would be a bit simpler. But, negative sampling has been shown to improve model accuracy and reduce training time so it is worth implementing. Let’s dig into the forward pass.</p>
 <p>Let’s imagine we have one training example we are passing through as a batch. In this example, <code>inputs</code> contains only the word associated with index 1. The first step of the forward pass is to lookup this word’s embeddings in the <code>self.t_embeddings</code> table. Then we use the <code>.view()</code> method to reshape it so we have an individual vector for the input we pass through the network. In the actual implementation, the batch size is 100. The <code>.view()</code> method creates a <code>(1 x N)</code>matrix for each word in each of the 100 training examples in the batch. Figure 4 will help the reader visualize what these first four lines of the <code>forward()</code> method do.</p>
 <p><img src="https://cdn-images-1.medium.com/max/800/1*z_nAE191CNL-qWAhjfy3Ig.png" alt=""></p>
@@ -433,10 +413,8 @@ programming  = [0.9,0.4,0.1]
 <p>The target embedding vector is of dimension <code>(1 x N)</code> and our context embedding matrix is of dimension <code>(N x 2)</code>. So, our matrix multiplication results in a matrix of dimension <code>(1 x 2)</code>. Figure 6 is what the final two lines of the <code>forward()</code> method accomplishes.</p>
 <p><img src="https://cdn-images-1.medium.com/max/800/1*Y6qR59wiyBoXq809pKiduQ.png" alt=""></p>
 <p>Figure 6: Input — Context Matrix Multiplication</p>
-<p>An alternative way to conceptualize this forward pass with negative sampling is by thinking of it as a dot product between the target word and each word in the context — the positive context word and all the negative context words. In this example, our positive context word was the 8th word in the vocabulary and the negative context word was the 6th word in the vocabulary. The resulting <code>(1 x 2)</code> vector contains the <a href="https://en.wikipedia.org/wiki/Logit"  class="external-link" target="_blank" rel="noopener">logits</a>
- for the two context words. Since we know the first context word is the positive context word and the second context word is the negative context word, the value should be large for the first element and small for the second element. To achieve this, we will use the <code>torch.nn.BCEWithLogitsLoss</code> as the loss function. We will revisit the choice of loss function in a later section.</p>
-<p>The last 3 methods in the <code>Model</code> class are <code>normalize_embeddings()</code>, <code>get_similar_words()</code>, and <code>get_similarity()</code>. Without getting into the details of each method, the <code>normalize_embeddings()</code> method scales every word embedding such that it is a unit vector (i.e., has a norm of 1). The <code>get_similar_words()</code> method will take a word and will return a list of the top-n most similar words. The similarity metric used is the <a href="https://en.wikipedia.org/wiki/Cosine_similarity"  class="external-link" target="_blank" rel="noopener">cosine similarity</a>
-. In other words, this method will return words whose vector representations are “closest” to the word of interest as measured by the angle between the two vectors. Finally, <code>get_similarity()</code> will take two words and will return the cosine similarity between the two word vectors.</p>
+<p>An alternative way to conceptualize this forward pass with negative sampling is by thinking of it as a dot product between the target word and each word in the context — the positive context word and all the negative context words. In this example, our positive context word was the 8th word in the vocabulary and the negative context word was the 6th word in the vocabulary. The resulting <code>(1 x 2)</code> vector contains the <a href="https://en.wikipedia.org/wiki/Logit"  class="external-link" target="_blank" rel="noopener">logits</a> for the two context words. Since we know the first context word is the positive context word and the second context word is the negative context word, the value should be large for the first element and small for the second element. To achieve this, we will use the <code>torch.nn.BCEWithLogitsLoss</code> as the loss function. We will revisit the choice of loss function in a later section.</p>
+<p>The last 3 methods in the <code>Model</code> class are <code>normalize_embeddings()</code>, <code>get_similar_words()</code>, and <code>get_similarity()</code>. Without getting into the details of each method, the <code>normalize_embeddings()</code> method scales every word embedding such that it is a unit vector (i.e., has a norm of 1). The <code>get_similar_words()</code> method will take a word and will return a list of the top-n most similar words. The similarity metric used is the <a href="https://en.wikipedia.org/wiki/Cosine_similarity"  class="external-link" target="_blank" rel="noopener">cosine similarity</a>. In other words, this method will return words whose vector representations are “closest” to the word of interest as measured by the angle between the two vectors. Finally, <code>get_similarity()</code> will take two words and will return the cosine similarity between the two word vectors.</p>
 <h4 id="creating-thetrainer">
   Creating the Trainer
   <a class="heading-link" href="#creating-thetrainer">
@@ -449,16 +427,11 @@ programming  = [0.9,0.4,0.1]
 <p>We first tell the model that it is in training mode using<code>self.model.train()</code>. This allows PyTorch to make certain types of network layers behave as expected during training. These layer types are not implemented in this model, but it is a best practice to inform PyTorch that the model is training. The next step is to loop over each batch, get the positive and negative context words, and send them to the appropriate device (CPU or GPU). In other words, we create the <code>context</code> tensor, which accesses the batched data from the dataloaders we constructed with the <code>SkipGrams</code> class and concatenates it with negative samples we generated with our <code>NegativeSampler</code> class. Next we construct the ground truth tensor, <code>y</code>. Since we know the first element in the <code>context</code> tensor is the positive context word and all the following elements are the negative context words, we create a tensor, <code>y</code>, where the first element of the tensor is a 1 and all the following elements are 0s.</p>
 <p>Now that we have our input data, the context data, and the ground truth labels, we can execute the forward pass. The first step is to tell PyTorch to set all the gradients to 0. Otherwise, each time we pass a batch of data through the model the gradient will be added, which is not the desired behavior. Then we execute the forward pass with the following line:</p>
 <div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>outputs <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>model(inputs, context)
-</span></span></code></pre></div><p>Next, the loss is computed. We are using the <code>torch.nn.BCEWithLogitsLoss</code> objective function since we have a binary classification problem where the first element of the tensor, <code>y</code>, is 1 and the following elements are 0. For more information of this loss function, please refer to the <a href="https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html"  class="external-link" target="_blank" rel="noopener">documentation</a>
-. Sebastian Raschka’s blog has a <a href="https://sebastianraschka.com/blog/2022/losses-learned-part1.html"  class="external-link" target="_blank" rel="noopener">very good overview of binary cross entropy loss</a>
- in PyTorch that can provide further insight, as well.</p>
+</span></span></code></pre></div><p>Next, the loss is computed. We are using the <code>torch.nn.BCEWithLogitsLoss</code> objective function since we have a binary classification problem where the first element of the tensor, <code>y</code>, is 1 and the following elements are 0. For more information of this loss function, please refer to the <a href="https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html"  class="external-link" target="_blank" rel="noopener">documentation</a>. Sebastian Raschka’s blog has a <a href="https://sebastianraschka.com/blog/2022/losses-learned-part1.html"  class="external-link" target="_blank" rel="noopener">very good overview of binary cross entropy loss</a> in PyTorch that can provide further insight, as well.</p>
 <div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>loss <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>params<span style="color:#ff7b72;font-weight:bold">.</span>CRITERION(outputs, y)
 </span></span></code></pre></div><p>PyTorch will automatically compute the gradient during this loss computation. The gradient contains all the information needed to make small adjustments to the model parameters and decrease the loss. This automatic computation is done in the line:</p>
 <div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>loss<span style="color:#ff7b72;font-weight:bold">.</span>backward()
-</span></span></code></pre></div><p>The small updates to the model parameters are done in the following line. Note, we are using the <code>[torch.optim.Adam](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html)</code> <a href="https://pytorch.org/docs/stable/generated/torch.optim.Adam.html"  class="external-link" target="_blank" rel="noopener">optimizer</a>
- . <a href="https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/"  class="external-link" target="_blank" rel="noopener">Adam</a>
- is one of the most cutting edge convex optimization algorithms that is an descendant of <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent"  class="external-link" target="_blank" rel="noopener">stochastic gradient descent</a>
-. I will not go into details about Adam in this post, but note that it tends to be one of the faster optimization algorithms since it leverages adaptive learning and gradient descent.</p>
+</span></span></code></pre></div><p>The small updates to the model parameters are done in the following line. Note, we are using the <code>[torch.optim.Adam](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html)</code> <a href="https://pytorch.org/docs/stable/generated/torch.optim.Adam.html"  class="external-link" target="_blank" rel="noopener">optimizer</a> . <a href="https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/"  class="external-link" target="_blank" rel="noopener">Adam</a> is one of the most cutting edge convex optimization algorithms that is an descendant of <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent"  class="external-link" target="_blank" rel="noopener">stochastic gradient descent</a>. I will not go into details about Adam in this post, but note that it tends to be one of the faster optimization algorithms since it leverages adaptive learning and gradient descent.</p>
 <div class="highlight"><pre tabindex="0" style="color:#c9d1d9;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>self<span style="color:#ff7b72;font-weight:bold">.</span>optimizer<span style="color:#ff7b72;font-weight:bold">.</span>step()
 </span></span></code></pre></div><p>The <code>_validate_epoch()</code> method is identical to the <code>_train_epoch()</code> method except it does not keep track of the gradients nor does it update the model parameters with the optimizer step. This is all accomplished with the line <code>with torch.no_grad()</code>. Additionally, the <code>_validate_epoch()</code> method only uses the validation data, not the training data.</p>
 <h4 id="putting-it-alltogether">
@@ -486,8 +459,7 @@ programming  = [0.9,0.4,0.1]
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
-<p>To conclude, we have reviewed a PyTorch implementation of word2vec with negative sampling and subsampling. This model allows us transform words into continuous vectors in an n-dimensional vector space. These embedding vectors are learned such that words with similar semantic meaning are grouped close together. With enough training data and sufficient time to train, the word2vec model can also learn syntactic patterns in text data. Word embeddings are a foundational component of NLP and are critical in more advanced models such as <a href="https://arxiv.org/pdf/1706.03762.pdf"  class="external-link" target="_blank" rel="noopener">Transformer</a>
--based large language models. Having a thorough understanding of word2vec is an extremely helpful foundation for further NLP learning!</p>
+<p>To conclude, we have reviewed a PyTorch implementation of word2vec with negative sampling and subsampling. This model allows us transform words into continuous vectors in an n-dimensional vector space. These embedding vectors are learned such that words with similar semantic meaning are grouped close together. With enough training data and sufficient time to train, the word2vec model can also learn syntactic patterns in text data. Word embeddings are a foundational component of NLP and are critical in more advanced models such as <a href="https://arxiv.org/pdf/1706.03762.pdf"  class="external-link" target="_blank" rel="noopener">Transformer</a>-based large language models. Having a thorough understanding of word2vec is an extremely helpful foundation for further NLP learning!</p>
 <hr>
 <p><em>All images unless otherwise noted are by the author.</em></p>
 <h3 id="references">
@@ -497,18 +469,11 @@ programming  = [0.9,0.4,0.1]
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
-<p>[1] T. Mikolov, K. Chen, G. Corrado, and J. Dean, <a href="https://arxiv.org/pdf/1301.3781.pdf"  class="external-link" target="_blank" rel="noopener">Efficient Estimation of Word Representations in Vector Space</a>
- (2013), Google Inc.</p>
-<p>[2] T. Mikolov, I. Sutskever**,** K. Chen, G. Corrado, and J. Dean, <a href="https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf"  class="external-link" target="_blank" rel="noopener">Distributed Representations of Words and Phrases and their Compositionality</a>
- (2013), Google Inc.</p>
-<p>[3] S. Raschka, <a href="https://sebastianraschka.com/blog/2022/losses-learned-part1.html"  class="external-link" target="_blank" rel="noopener">Losses Learned</a>
- (2022), <a href="https://sebastianraschka.com"  class="external-link" target="_blank" rel="noopener">https://sebastianraschka.com</a>
-</p>
-<p>By <a href="https://medium.com/@jonahbreslow"  class="external-link" target="_blank" rel="noopener">Jonah Breslow</a>
- on <a href="https://medium.com/p/c7fe5bf99889"  class="external-link" target="_blank" rel="noopener">December 22, 2022</a>
-.</p>
-<p><a href="https://medium.com/@jonahbreslow/implementing-word2vec-in-pytorch-from-the-ground-up-c7fe5bf99889"  class="external-link" target="_blank" rel="noopener">Canonical link</a>
-</p>
+<p>[1] T. Mikolov, K. Chen, G. Corrado, and J. Dean, <a href="https://arxiv.org/pdf/1301.3781.pdf"  class="external-link" target="_blank" rel="noopener">Efficient Estimation of Word Representations in Vector Space</a> (2013), Google Inc.</p>
+<p>[2] T. Mikolov, I. Sutskever**,** K. Chen, G. Corrado, and J. Dean, <a href="https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf"  class="external-link" target="_blank" rel="noopener">Distributed Representations of Words and Phrases and their Compositionality</a> (2013), Google Inc.</p>
+<p>[3] S. Raschka, <a href="https://sebastianraschka.com/blog/2022/losses-learned-part1.html"  class="external-link" target="_blank" rel="noopener">Losses Learned</a> (2022), <a href="https://sebastianraschka.com"  class="external-link" target="_blank" rel="noopener">https://sebastianraschka.com</a></p>
+<p>By <a href="https://medium.com/@jonahbreslow"  class="external-link" target="_blank" rel="noopener">Jonah Breslow</a> on <a href="https://medium.com/p/c7fe5bf99889"  class="external-link" target="_blank" rel="noopener">December 22, 2022</a>.</p>
+<p><a href="https://medium.com/@jonahbreslow/implementing-word2vec-in-pytorch-from-the-ground-up-c7fe5bf99889"  class="external-link" target="_blank" rel="noopener">Canonical link</a></p>
 
       </div>
 

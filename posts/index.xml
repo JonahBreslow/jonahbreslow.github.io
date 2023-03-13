@@ -13,7 +13,8 @@
       <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
       
       <guid>https://jonahbreslow.github.io/posts/word2vec/</guid>
-      <description>A Step-by-Step Guide to Training a Word2vec Model Link to heading Photo by Brett Jordan on Unsplash Introduction Link to heading An important component of natural language processing (NLP) is the ability to translate words, phrases, or larger bodies of text into continuous numerical vectors. There are many techniques for accomplishing this task, but in this post we will focus in on a technique published in 2013 called word2vec.</description>
+      <description>A Step-by-Step Guide to Training a Word2vec Model Link to heading Photo by Brett Jordan on Unsplash
+Introduction Link to heading An important component of natural language processing (NLP) is the ability to translate words, phrases, or larger bodies of text into continuous numerical vectors. There are many techniques for accomplishing this task, but in this post we will focus in on a technique published in 2013 called word2vec.</description>
     </item>
     
     <item>
@@ -22,7 +23,8 @@
       <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
       
       <guid>https://jonahbreslow.github.io/posts/iptw/</guid>
-      <description>An Intuitive Explanation of IPTW and a Comparison to Multivariate Regression Link to heading Photo by Nadir sYzYgY on Unsplash Introduction Link to heading In this post I will provide an intuitive and illustrated explanation of inverse probability of treatment weighting (IPTW), which is one of various propensity score (PS) methods. IPTW is an alternative to multivariate linear regression in the context of causal inference, since both attempt to ascertain the effect of a treatment on an outcome in the presence of confounds.</description>
+      <description>An Intuitive Explanation of IPTW and a Comparison to Multivariate Regression Link to heading Photo by Nadir sYzYgY on Unsplash
+Introduction Link to heading In this post I will provide an intuitive and illustrated explanation of inverse probability of treatment weighting (IPTW), which is one of various propensity score (PS) methods. IPTW is an alternative to multivariate linear regression in the context of causal inference, since both attempt to ascertain the effect of a treatment on an outcome in the presence of confounds.</description>
     </item>
     
   </channel>
