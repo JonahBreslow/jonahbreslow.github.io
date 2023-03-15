@@ -18,6 +18,15 @@ My main focus is on leveraging data-driven solutions to tackle complex problems 
     </item>
     
     <item>
+      <title>Reading List</title>
+      <link>https://jonahbreslow.github.io/reading_list/</link>
+      <pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://jonahbreslow.github.io/reading_list/</guid>
+      <description> Non-Fiction Books Link to heading The Book of Why - Judea Pearl Clean Code - Robert Martin Papers Link to heading Efficient Estimation of Word Representations in Vector Space - Mikolov et al. Distributed Representations of Words and Phrases and their Compositionality - Mikolov et al. </description>
+    </item>
+    
+    <item>
       <title>Implementing Word2vec in PyTorch from the Ground Up</title>
       <link>https://jonahbreslow.github.io/posts/word2vec/</link>
       <pubDate>Sat, 11 Mar 2023 12:07:25 -0800</pubDate>
